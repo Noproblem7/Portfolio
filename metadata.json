@@ -1,0 +1,6 @@
+{
+  "name": "Robotics Portfolio",
+  "description": "Robototexnika muhandisi va innovatsion yechimlar yaratuvchisining shaxsiy portfolio loyihasi",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

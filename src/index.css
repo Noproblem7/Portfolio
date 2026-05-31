@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@350;450;500;600;750&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-slate-950: #050508;
+  --color-slate-900: #0d1117;
+  --color-slate-850: rgba(136, 146, 176, 0.15);
+  --color-slate-800: rgba(0, 242, 255, 0.15);
+  --color-slate-400: #8892b0;
+  --color-slate-450: #8892b0;
+  --color-cyan-400: #00f2ff;
+  --color-cyan-500: #00f2ff;
+  --color-cyan-600: #00b8c4;
+  --color-cyan-950: rgba(0, 242, 255, 0.05);
+  --color-cyan-900: rgba(0, 242, 255, 0.15);
+  --color-emerald-400: #00ff9d;
+  --color-emerald-500: #00ff9d;
+  --color-emerald-950: rgba(0, 255, 157, 0.05);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #050508; /* Immersive dark background */
+    color: #e2e8f0;
+  }
+  
+  body {
+    background-color: #050508;
+    color: #e2e8f0;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050508;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #0d1117;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 242, 255, 0.15);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00f2ff; /* Neon Cyan */
+  }
+}
+
+/* Glass panel style from the theme */
+.glass-panel {
+  background: rgba(13, 17, 23, 0.8) !important;
+  border: 1px solid rgba(0, 242, 255, 0.2) !important;
+  border-radius: 4px !important;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+/* Neon Left Accent Borders */
+.neon-border-cyan {
+  border-left: 3px solid #00f2ff !important;
+  box-shadow: 0 0 15px rgba(0, 242, 255, 0.1) !important;
+}
+
+.neon-border-green {
+  border-left: 3px solid #00ff9d !important;
+  box-shadow: 0 0 15px rgba(0, 255, 157, 0.1) !important;
+}
+
+/* Neon text shadows */
+.neon-text-cyan {
+  color: #00f2ff !important;
+  text-shadow: 0 0 8px rgba(0, 242, 255, 0.6);
+}
+
+.neon-text-emerald {
+  color: #00ff9d !important;
+  text-shadow: 0 0 8px rgba(0, 255, 157, 0.6);
+}
+
+/* Cyber grid background layer */
+.bg-cyber-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 242, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 242, 255, 0.04) 1px, transparent 1px);
+}
+
+/* Custom interactive chip tags from the design HTML style sheet */
+.skills-tag {
+  display: inline-block;
+  padding: 4px 8px;
+  background: rgba(0, 242, 255, 0.1) !important;
+  border: 1px solid rgba(0, 242, 255, 0.3) !important;
+  font-size: 11px;
+  margin: 2px;
+  color: #00f2ff !important;
+  font-family: var(--font-mono);
+  border-radius: 2px;
+  transition: all 0.2s ease-in-out;
+}
+
+.skills-tag:hover {
+  background: rgba(0, 242, 255, 0.2) !important;
+  border-color: rgba(0, 242, 255, 0.8) !important;
+  box-shadow: 0 0 8px rgba(0, 242, 255, 0.3);
+}
+
+/* Immersive styled button from the design specs */
+.btn-cyber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: 1px solid #00f2ff;
+  color: #00f2ff;
+  background: transparent;
+  text-decoration: none;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  letter-spacing: 0.15em;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.btn-cyber:hover {
+  background: rgba(0, 242, 255, 0.12);
+  box-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+  text-shadow: 0 0 5px rgba(0, 242, 255, 0.5);
+}
+
+.btn-cyber-green {
+  border-color: #00ff9d !important;
+  color: #00ff9d !important;
+}
+
+.btn-cyber-green:hover {
+  background: rgba(0, 255, 157, 0.12);
+  box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
+  text-shadow: 0 0 5px rgba(0, 255, 157, 0.5);
+}
+
+/* High-tech section titles with automated horizontal lines */
+.section-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #8892b0;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.15em;
+}
+
+.section-title::after {
+  content: '';
+  flex-grow: 1;
+  height: 1px;
+  background: rgba(136, 146, 176, 0.2);
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
