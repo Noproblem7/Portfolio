@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Menu, X, Cpu, Settings, Edit3 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Cpu, Sun, Moon } from 'lucide-react';
 
 interface HeaderProps {
   name: string;
@@ -8,6 +8,29 @@ interface HeaderProps {
 export default function Header({ name }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('home');
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('portfolio-theme');
+      if (saved === 'light' || saved === 'dark') {
+        return saved;
+      }
+    }
+    return 'dark'; // default to dark
+  });
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (theme === 'light') {
+      root.classList.add('light');
+    } else {
+      root.classList.remove('light');
+    }
+    localStorage.setItem('portfolio-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
 
   const menuItems = [
     { id: 'about', label: 'Men haqimda', href: '#about' },
@@ -56,10 +79,37 @@ export default function Header({ name }: HeaderProps) {
                 )}
               </a>
             ))}
+
+            {/* Futuristic Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="flex items-center gap-1.5 text-xs font-mono tracking-wider uppercase bg-slate-900/80 hover:bg-slate-800 text-slate-400 hover:text-cyan-400 border border-slate-800 hover:border-cyan-500/50 px-2.5 py-1.5 rounded transition-all duration-300 ml-4 cursor-pointer"
+              title={theme === 'dark' ? "Kunduzgi rejimga o'tish" : "Tungi rejimga o'tish"}
+            >
+              {theme === 'dark' ? (
+                <>
+                  <Sun className="w-3.5 h-3.5 text-amber-500 animate-[spin_6s_linear_infinite]" />
+                  <span>Kunduzgi</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="w-3.5 h-3.5 text-indigo-400" />
+                  <span>Tungi</span>
+                </>
+              )}
+            </button>
           </nav>
 
           {/* Mobile navigation buttons */}
           <div className="flex items-center gap-2.5 md:hidden">
+            {/* Mobile Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 text-slate-400 hover:text-cyan-400 bg-slate-900 border border-slate-850 rounded cursor-pointer transition-colors"
+              title={theme === 'dark' ? "Kunduzgi rejimga o'tish" : "Tungi rejimga o'tish"}
+            >
+              {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-500" /> : <Moon className="w-4 h-4 text-indigo-400" />}
+            </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 text-slate-400 hover:text-slate-100 bg-slate-900 border border-slate-850 rounded cursor-pointer"

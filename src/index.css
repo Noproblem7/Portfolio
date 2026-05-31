@@ -178,3 +178,196 @@
     stroke-dashoffset: -40;
   }
 }
+
+/* --- LIGHT MODE OVERRIDES --- */
+html.light {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+html.light body,
+html.light #about,
+html.light #skills,
+html.light #projects,
+html.light #contact,
+html.light footer {
+  background-color: #f8fafc !important;
+  color: #1e293b !important;
+}
+
+html.light header {
+  background-color: rgba(248, 250, 252, 0.85) !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-color: rgba(0, 242, 255, 0.2);
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #0284c7;
+}
+
+html.light .glass-panel {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(6, 182, 212, 0.3) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
+}
+
+html.light .glass-panel .absolute {
+  background-color: rgba(6, 182, 212, 0.03) !important;
+}
+
+html.light h1,
+html.light h2,
+html.light h3,
+html.light h4,
+html.light h5,
+html.light h6,
+html.light .text-slate-100,
+html.light .text-slate-200,
+html.light .text-slate-300 {
+  color: #0f172a !important;
+}
+
+html.light p,
+html.light span,
+html.light .text-slate-400,
+html.light .text-slate-450,
+html.light .text-slate-500 {
+  color: #475569 !important;
+}
+
+html.light .skills-tag {
+  background: rgba(6, 182, 212, 0.08) !important;
+  border-color: rgba(6, 182, 212, 0.4) !important;
+  color: #0369a1 !important;
+}
+
+html.light .skills-tag:hover {
+  background: rgba(6, 182, 212, 0.15) !important;
+  border-color: #0284c7 !important;
+  color: #0284c7 !important;
+}
+
+html.light .btn-cyber {
+  border-color: #0284c7 !important;
+  color: #0284c7 !important;
+}
+
+html.light .btn-cyber:hover {
+  background: rgba(2, 132, 199, 0.08) !important;
+  box-shadow: 0 0 12px rgba(2, 132, 199, 0.25) !important;
+}
+
+html.light .btn-cyber-green {
+  border-color: #047857 !important;
+  color: #047857 !important;
+}
+
+html.light .btn-cyber-green:hover {
+  background: rgba(4, 120, 87, 0.08) !important;
+  box-shadow: 0 0 12px rgba(4, 120, 87, 0.25) !important;
+}
+
+html.light .section-title {
+  color: #475569 !important;
+}
+
+html.light .section-title::after {
+  background: rgba(71, 85, 105, 0.2) !important;
+}
+
+/* Interactive Sandbox (RoboConsole) light styles */
+html.light .w-full.bg-slate-950.border.border-slate-900,
+html.light .bg-slate-950\/90,
+html.light .bg-slate-950\/80,
+html.light .bg-slate-950\/70 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light .bg-slate-900\/90,
+html.light .bg-slate-900\/40 {
+  background-color: #f1f5f9 !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+
+html.light select,
+html.light input,
+html.light textarea {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html.light select:focus,
+html.light input:focus,
+html.light textarea:focus {
+  border-color: #06b6d4 !important;
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.1) !important;
+}
+
+html.light .font-mono.text-\[11px\].leading-relaxed {
+  background-color: #f8fafc !important;
+}
+
+html.light .flex-1.p-3\.5 {
+  background-color: #ffffff !important;
+}
+
+html.light .text-slate-300,
+html.light .text-slate-400 {
+  color: #1e293b !important;
+}
+
+html.light .text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+html.light .border-slate-900,
+html.light .border-slate-800,
+html.light .border-slate-850,
+html.light .border-t-slate-900 {
+  border-color: #e2e8f0 !important;
+}
+
+html.light .bg-slate-950 {
+  background-color: #f8fafc !important;
+}
+
+html.light .bg-slate-900 {
+  background-color: #f1f5f9 !important;
+}
+
+html.light .text-cyan-400 {
+  color: #0284c7 !important;
+}
+
+html.light .text-cyan-455 {
+  color: #0284c7 !important;
+}
+
+html.light .neon-text-cyan {
+  text-shadow: none !important;
+  color: #0284c7 !important;
+}
+
+html.light .bg-cyber-grid {
+  background-image: 
+    linear-gradient(to right, rgba(2, 132, 199, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(2, 132, 199, 0.05) 1px, transparent 1px) !important;
+}
+
+html.light footer {
+  border-top-color: #e2e8f0 !important;
+}
+
+html.light .bg-slate-950\/40 {
+  background-color: rgba(241, 245, 249, 0.5) !important;
+}
