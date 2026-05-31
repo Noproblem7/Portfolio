@@ -23,7 +23,7 @@ export interface SkillCategory {
 export interface ContactMessage {
   id: string;
   name: string;
-  email: string;
+  email?: string;
   message: string;
   timestamp: string;
 }

@@ -5,15 +5,11 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
-import { 
-  INITIAL_PROFILE, 
-  INITIAL_SKILLS, 
-  INITIAL_PROJECTS, 
-  SOCIAL_LINKS 
-} from './data';
+import { LanguageProvider, useLanguage } from './LanguageContext';
+import { SOCIAL_LINKS } from './data';
 
-export default function App() {
-  const profile = INITIAL_PROFILE;
+function AppContent() {
+  const { profile, skills, projects, t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-cyan-500/35 selection:text-cyan-200">
@@ -38,12 +34,12 @@ export default function App() {
 
         {/* Visual Skills checklist & Simulator command console */}
         <Skills 
-          categories={INITIAL_SKILLS} 
+          categories={skills} 
         />
 
         {/* Robotics deliverables timeline */}
         <Projects 
-          projects={INITIAL_PROJECTS} 
+          projects={projects} 
         />
 
         {/* Secure connection form & coordinates */}
@@ -56,13 +52,21 @@ export default function App() {
       <footer className="bg-slate-950 border-t border-slate-900 py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-center">
           <p className="font-mono text-[10px] sm:text-xs text-slate-500">
-            © {new Date().getFullYear()} {profile.name}. Barcha huquqlar himoyalangan.
+            © {new Date().getFullYear()} {profile.name}. {t('footer_rights')}
           </p>
           <p className="font-mono text-[9px] sm:text-[10px] text-slate-600 uppercase tracking-widest">
-            Loyihalashtirildi & Ishlab chiqildi // high-tech robotics specs
+            {t('footer_tag')}
           </p>
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   );
 }

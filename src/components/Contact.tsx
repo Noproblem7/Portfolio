@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Send, Github, Linkedin, CheckCircle, Mail, AlertCircle, MessageSquare } from 'lucide-react';
 import { SocialLink, ContactMessage } from '../types';
+import { useLanguage } from '../LanguageContext';
 
 interface ContactProps {
   socials: SocialLink[];
 }
 
 export default function Contact({ socials }: ContactProps) {
+  const { t } = useLanguage();
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [localMessages, setLocalMessages] = useState<ContactMessage[]>([]);
@@ -28,7 +29,7 @@ export default function Contact({ socials }: ContactProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email || !message) {
+    if (!name || !message) {
       setStatus('error');
       setTimeout(() => setStatus('idle'), 3000);
       return;
@@ -37,7 +38,6 @@ export default function Contact({ socials }: ContactProps) {
     const newMessage: ContactMessage = {
       id: `msg-${Date.now()}`,
       name,
-      email,
       message,
       timestamp: new Date().toLocaleTimeString()
     };
@@ -51,13 +51,12 @@ export default function Contact({ socials }: ContactProps) {
     }
 
     // Trigger mailto email action
-    const mailtoUrl = `mailto:mtilavoldiyev9@gmail.com?subject=${encodeURIComponent("Portfolio orqali xabar: " + name)}&body=${encodeURIComponent("Kimdan: " + name + " (" + email + ")\n\nXabar:\n" + message)}`;
+    const mailtoUrl = `mailto:mtilavoldiyev9@gmail.com?subject=${encodeURIComponent("Portfolio message from " + name)}&body=${encodeURIComponent("From: " + name + "\n\nMessage:\n" + message)}`;
     window.location.href = mailtoUrl;
 
     // Success state triggering animation
     setStatus('success');
     setName('');
-    setEmail('');
     setMessage('');
 
     setTimeout(() => {
@@ -84,19 +83,19 @@ export default function Contact({ socials }: ContactProps) {
   };
 
   return (
-    <section id="contact" className="py-24 bg-slate-950 border-t border-slate-900 relative">
+    <section id="contact" className="py-24 bg-slate-950 border-t border-slate-900 relative transition-colors duration-300">
       <div className="absolute inset-0 bg-cyber-grid opacity-5 pointer-events-none"></div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Heading */}
         <div className="text-center mb-16">
-          <h2 className="section-title justify-center">04 // ALOQA</h2>
+          <h2 className="section-title justify-center">{t('contact_subtitle')}</h2>
           <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-slate-100 tracking-tight mt-1">
-            Bog'lanish & Muloqot
+            {t('contact_title')}
           </h3>
-          <p className="mt-4 text-xs sm:text-sm text-slate-400 max-w-xl mx-auto font-sans font-light">
-            Savollaringiz bormi yoki yangi robototexnika loyihasini muhokama qilmoqchimisiz? Menga yozing!
+          <p className="mt-4 text-xs sm:text-sm text-slate-400 max-w-xl mx-auto font-sans font-light leading-relaxed">
+            {t('contact_desc')}
           </p>
         </div>
 
@@ -108,7 +107,7 @@ export default function Contact({ socials }: ContactProps) {
               <div className="absolute top-0 right-0 w-24 h-24 bg-cyan-500/5 rounded-full filter blur-xl"></div>
               
               <h4 className="font-display font-bold text-sm tracking-wider uppercase text-slate-200 mb-4">
-                Aloqa Ma'lumotlari
+                {t('contact_info_title')}
               </h4>
               
               <div className="space-y-4 font-mono text-xs sm:text-sm text-slate-400">
@@ -116,13 +115,13 @@ export default function Contact({ socials }: ContactProps) {
                   <Mail className="w-4 h-4 text-cyan-400" />
                   <span>Email: mtilavoldiyev9@gmail.com</span>
                 </div>
-                <div>Status: Yangi loyihalar uchun ochiq</div>
+                <div>{t('contact_info_status')}</div>
               </div>
 
               <div className="h-[1px] bg-slate-900 my-6"></div>
 
               <h5 className="font-display font-semibold text-xs text-slate-300 uppercase tracking-wider mb-4">
-                Ijtimoiy Tarmoqlar
+                {t('contact_social_title')}
               </h5>
               
               <div className="flex flex-wrap gap-3">
@@ -132,7 +131,7 @@ export default function Contact({ socials }: ContactProps) {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-cyber inline-flex items-center gap-2"
+                    className="btn-cyber inline-flex items-center gap-2 cursor-pointer text-xs"
                   >
                     {renderSocialIcon(link.icon)}
                     {link.platform}
@@ -148,14 +147,14 @@ export default function Contact({ socials }: ContactProps) {
                   <div className="flex items-center gap-2">
                     <MessageSquare className="w-4 h-4 text-cyan-400" />
                     <h4 className="font-display font-bold text-xs tracking-wider uppercase text-slate-200">
-                      Kelgan Xabarlar ({localMessages.length})
+                      {t('contact_inbox_title')} ({localMessages.length})
                     </h4>
                   </div>
                   <button 
                     onClick={handleClearInbox}
                     className="font-mono text-[9px] text-rose-450 hover:underline cursor-pointer"
                   >
-                    Tozalash
+                    {t('contact_inbox_clear')}
                   </button>
                 </div>
                 
@@ -181,37 +180,21 @@ export default function Contact({ socials }: ContactProps) {
               className="glass-panel neon-border-cyan p-6 sm:p-8 space-y-6"
             >
               <h4 className="font-display font-bold text-sm tracking-wider uppercase text-slate-200">
-                Xabar qoldirish
+                {t('contact_form_title')}
               </h4>
 
               <div className="space-y-4">
                 {/* Name */}
                 <div className="space-y-2">
                   <label htmlFor="name-input" className="block font-mono text-[10px] sm:text-xs text-slate-400 uppercase tracking-widest">
-                    To'liq ismingiz
+                    {t('contact_form_name')}
                   </label>
                   <input
                     id="name-input"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Masalan: Muhammadaziz Tilavoldiyev"
-                    className="w-full bg-slate-950/80 text-slate-100 border border-cyan-500/20 focus:border-cyan-400 focus:shadow-[0_0_10px_rgba(0,242,255,0.15)] rounded px-4 py-3 text-sm outline-none transition-all duration-300 font-sans font-light"
-                    required
-                  />
-                </div>
-
-                {/* Email */}
-                <div className="space-y-2">
-                  <label htmlFor="email-input" className="block font-mono text-[10px] sm:text-xs text-slate-400 uppercase tracking-widest">
-                    Elektron pochta manzilingiz
-                  </label>
-                  <input
-                    id="email-input"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Masalan: example@gmail.com"
+                    placeholder={t('contact_form_name_placeholder')}
                     className="w-full bg-slate-950/80 text-slate-100 border border-cyan-500/20 focus:border-cyan-400 focus:shadow-[0_0_10px_rgba(0,242,255,0.15)] rounded px-4 py-3 text-sm outline-none transition-all duration-300 font-sans font-light"
                     required
                   />
@@ -220,13 +203,13 @@ export default function Contact({ socials }: ContactProps) {
                 {/* Message */}
                 <div className="space-y-2">
                   <label htmlFor="msg-input" className="block font-mono text-[10px] sm:text-xs text-slate-400 uppercase tracking-widest">
-                    Sizning xabaringiz
+                    {t('contact_form_message')}
                   </label>
                   <textarea
                     id="msg-input"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Loyiha yoki o'zaro hamkorlik haqida yozing..."
+                    placeholder={t('contact_form_message_placeholder')}
                     rows={4}
                     className="w-full bg-slate-950/80 text-slate-100 border border-cyan-500/20 focus:border-cyan-400 focus:shadow-[0_0_10px_rgba(0,242,255,0.15)] rounded px-4 py-3 text-sm outline-none transition-all duration-300 font-sans font-light resize-none"
                     required
@@ -244,7 +227,7 @@ export default function Contact({ socials }: ContactProps) {
                     className="flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-950/20 border border-emerald-900/50 p-3 rounded-xl"
                   >
                     <CheckCircle className="w-4 h-4 shrink-0" />
-                    Xabar muvaffaqiyatli yuborildi! (U pastdagi xabarlar jurnaliga qo'shildi)
+                    {t('contact_status_success')}
                   </motion.div>
                 )}
 
@@ -256,7 +239,7 @@ export default function Contact({ socials }: ContactProps) {
                     className="flex items-center gap-2 text-xs font-mono text-rose-400 bg-rose-950/20 border border-rose-900/50 p-3 rounded-xl"
                   >
                     <AlertCircle className="w-4 h-4 shrink-0" />
-                    Iltimos barcha maydonlarni to'g'ri to'ldiring!
+                    {t('contact_status_error')}
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -264,10 +247,10 @@ export default function Contact({ socials }: ContactProps) {
               {/* Submit trigger button */}
               <button
                 type="submit"
-                className="btn-cyber w-full !py-3 font-semibold inline-flex items-center justify-center gap-2"
+                className="btn-cyber w-full !py-3 font-semibold inline-flex items-center justify-center gap-2 cursor-pointer text-sm"
               >
                 <Send className="w-4 h-4" />
-                Xabarni yuborish
+                {t('contact_btn_send')}
               </button>
             </form>
           </div>

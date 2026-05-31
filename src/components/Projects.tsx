@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Github, ExternalLink, X, Cpu, Settings, CheckCircle } from 'lucide-react';
+import { Github, X, CheckCircle } from 'lucide-react';
 import { Project } from '../types';
 import ProjectIllustration from './ProjectIllustration';
+import { useLanguage } from '../LanguageContext';
 
 interface ProjectsProps {
   projects: Project[];
@@ -10,21 +11,22 @@ interface ProjectsProps {
 
 export default function Projects({ projects }: ProjectsProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const { t } = useLanguage();
 
   return (
-    <section id="projects" className="py-24 bg-slate-950 border-t border-slate-900 relative">
+    <section id="projects" className="py-24 bg-slate-950 border-t border-slate-900 relative transition-colors duration-300">
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-slate-900/10 to-transparent pointer-events-none"></div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}
         <div className="text-center mb-16">
-          <h2 className="section-title justify-center">03 // LOYIHALAR</h2>
+          <h2 className="section-title justify-center">{t('projects_subtitle')}</h2>
           <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-slate-100 tracking-tight mt-1">
-            Amaliy Ishlarim
+            {t('projects_title')}
           </h3>
-          <p className="mt-4 text-xs sm:text-sm text-slate-400 max-w-xl mx-auto font-sans font-light">
-            Men ishlab chiqqan va hayotga tatbiq etgan ba'zi qiziqarli robototexnika loyihalari va IoT tizimlari.
+          <p className="mt-4 text-xs sm:text-sm text-slate-400 max-w-xl mx-auto font-sans font-light leading-relaxed">
+            {t('projects_desc')}
           </p>
         </div>
 
@@ -72,16 +74,16 @@ export default function Projects({ projects }: ProjectsProps) {
                   <div className="flex gap-2 pt-2">
                     <button
                       onClick={() => setSelectedProject(project)}
-                      className="btn-cyber flex-1 !py-1 text-[11px]"
+                      className="btn-cyber flex-1 !py-1 text-[11px] cursor-pointer"
                     >
-                      Batafsil / Sxema
+                      {t('projects_btn_details')}
                     </button>
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-cyber btn-cyber-green !p-2 shrink-0 flex items-center justify-center"
-                      title="GitHub kodlarini ko'rish"
+                      className="btn-cyber btn-cyber-green !p-2 shrink-0 flex items-center justify-center cursor-pointer"
+                      title={t('projects_github_title')}
                     >
                       <Github className="w-4 h-4" />
                     </a>
@@ -124,7 +126,7 @@ export default function Projects({ projects }: ProjectsProps) {
               <div className="space-y-6">
                 <div>
                   <span className="font-mono text-[10px] tracking-widest text-cyan-400 uppercase">
-                    LOYiHA CHIZMASI & TAFTIShI
+                    {t('projects_modal_subtitle')}
                   </span>
                   <h3 className="font-display text-xl sm:text-2xl font-black text-slate-100 mt-1">
                     {selectedProject.title}
@@ -138,7 +140,7 @@ export default function Projects({ projects }: ProjectsProps) {
                 <div className="space-y-4">
                   <h4 className="font-display font-bold text-xs tracking-wider uppercase text-cyan-400 flex items-center gap-1.5">
                     <CheckCircle className="w-3.5 h-3.5 text-cyan-400" />
-                    Loyiha Haqida To'liq Tavsif
+                    {t('projects_modal_desc_title')}
                   </h4>
                   <p className="font-sans text-xs sm:text-sm text-slate-400 leading-relaxed font-light">
                     {selectedProject.details}
@@ -147,7 +149,7 @@ export default function Projects({ projects }: ProjectsProps) {
 
                 <div className="space-y-3">
                   <h4 className="font-display font-semibold text-xs text-slate-350">
-                    Ishlatilgan apparatlar va kutubxonalar:
+                    {t('projects_modal_tech_title')}
                   </h4>
                   <div className="flex flex-wrap gap-1">
                     {selectedProject.techTags.map((tag, idx) => (
@@ -166,16 +168,16 @@ export default function Projects({ projects }: ProjectsProps) {
                     href={selectedProject.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-cyber flex-1 inline-flex items-center justify-center gap-2"
+                    className="btn-cyber flex-1 inline-flex items-center justify-center gap-2 cursor-pointer text-xs"
                   >
                     <Github className="w-4 h-4" />
-                    GitHub Manba Kodi
+                    {t('projects_modal_source')}
                   </a>
                   <button
                     onClick={() => setSelectedProject(null)}
-                    className="btn-cyber btn-cyber-green px-5"
+                    className="btn-cyber btn-cyber-green px-5 cursor-pointer text-xs"
                   >
-                    Yopish
+                    {t('projects_modal_close')}
                   </button>
                 </div>
               </div>
