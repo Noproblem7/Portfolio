@@ -20,7 +20,7 @@ export default function Hero({ name, title }: HeroProps) {
       <div className="max-w-4xl mx-auto text-center relative z-10 space-y-8">
 
 
-        {/* Major heading - Salom, men Sardor Ergashev. */}
+        {/* Major heading */}
         <div className="space-y-4">
           <motion.h1 
             initial={{ opacity: 0, y: 15 }}

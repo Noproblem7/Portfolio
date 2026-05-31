@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
-import Configurator from './components/Configurator';
 import { 
   INITIAL_PROFILE, 
   INITIAL_SKILLS, 
@@ -14,38 +13,7 @@ import {
 } from './data';
 
 export default function App() {
-  // Load personalized profile details from localStorage (lazy initialization prevents HMR/useEffect re-render loops)
-  const [profile, setProfile] = useState(() => {
-    try {
-      const saved = localStorage.getItem('robo_portfolio_profile_v1');
-      if (saved) {
-        return JSON.parse(saved);
-      }
-    } catch (e) {
-      console.error("Local storage initialization error", e);
-    }
-    return INITIAL_PROFILE;
-  });
-
-  const [showConfig, setShowConfig] = useState(false);
-
-  const handleSaveProfile = (newData: { name: string; title: string; bio: string }) => {
-    setProfile(newData);
-    try {
-      localStorage.setItem('robo_portfolio_profile_v1', JSON.stringify(newData));
-    } catch (e) {
-      console.error("Error saving customized profile", e);
-    }
-  };
-
-  const handleResetProfile = () => {
-    setProfile(INITIAL_PROFILE);
-    try {
-      localStorage.removeItem('robo_portfolio_profile_v1');
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  const profile = INITIAL_PROFILE;
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-cyan-500/35 selection:text-cyan-200">
@@ -53,7 +21,6 @@ export default function App() {
       {/* Navigation section */}
       <Header 
         name={profile.name} 
-        onOpenConfig={() => setShowConfig(true)} 
       />
 
       {/* Main layouts container */}
@@ -96,18 +63,6 @@ export default function App() {
           </p>
         </div>
       </footer>
-
-      {/* Configurator modal */}
-      {showConfig && (
-        <Configurator
-          name={profile.name}
-          title={profile.title}
-          bio={profile.bio}
-          onSave={handleSaveProfile}
-          onReset={handleResetProfile}
-          onClose={() => setShowConfig(false)}
-        />
-      )}
     </div>
   );
 }

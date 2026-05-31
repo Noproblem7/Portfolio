@@ -3,10 +3,9 @@ import { Menu, X, Cpu, Settings, Edit3 } from 'lucide-react';
 
 interface HeaderProps {
   name: string;
-  onOpenConfig: () => void;
 }
 
-export default function Header({ name, onOpenConfig }: HeaderProps) {
+export default function Header({ name }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('home');
 
@@ -57,27 +56,10 @@ export default function Header({ name, onOpenConfig }: HeaderProps) {
                 )}
               </a>
             ))}
-            
-            {/* Interactive Settings Trigger to customize information */}
-            <button
-              onClick={onOpenConfig}
-              title="Portfolioni sozlashingiz mumkin"
-              className="flex items-center gap-1.5 text-xs font-mono tracking-wider uppercase bg-slate-900 hover:bg-slate-800 text-cyan-400 border border-slate-800 hover:border-cyan-500/50 px-3 py-1.5 rounded transition-all duration-300 ml-4 cursor-pointer"
-            >
-              <Edit3 className="w-3.5 h-3.5" />
-              Sozlash
-            </button>
           </nav>
 
-          {/* Mobile navigation and edit buttons */}
+          {/* Mobile navigation buttons */}
           <div className="flex items-center gap-2.5 md:hidden">
-            <button
-              onClick={onOpenConfig}
-              className="p-2 text-cyan-400 hover:text-cyan-300 bg-slate-900 border border-slate-800 rounded cursor-pointer"
-              title="Sozlash"
-            >
-              <Edit3 className="w-4 h-4" />
-            </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 text-slate-400 hover:text-slate-100 bg-slate-900 border border-slate-850 rounded cursor-pointer"

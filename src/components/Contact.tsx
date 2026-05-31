@@ -50,6 +50,10 @@ export default function Contact({ socials }: ContactProps) {
       console.error(e);
     }
 
+    // Trigger mailto email action
+    const mailtoUrl = `mailto:mtilavoldiyev9@gmail.com?subject=${encodeURIComponent("Portfolio orqali xabar: " + name)}&body=${encodeURIComponent("Kimdan: " + name + " (" + email + ")\n\nXabar:\n" + message)}`;
+    window.location.href = mailtoUrl;
+
     // Success state triggering animation
     setStatus('success');
     setName('');
@@ -191,7 +195,7 @@ export default function Contact({ socials }: ContactProps) {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Masalan: Sardor Ergashev"
+                    placeholder="Masalan: Muhammadaziz Tilavoldiyev"
                     className="w-full bg-slate-950/80 text-slate-100 border border-cyan-500/20 focus:border-cyan-400 focus:shadow-[0_0_10px_rgba(0,242,255,0.15)] rounded px-4 py-3 text-sm outline-none transition-all duration-300 font-sans font-light"
                     required
                   />

@@ -1,7 +1,7 @@
 import { Project, SkillCategory, SocialLink } from './types';
 
 export const INITIAL_PROFILE = {
-  name: "Sardor Ergashev",
+  name: "Muhammadaziz Tilavoldiyev",
   title: "Robototexnika muhandisi & Innovatsion yechimlar yaratuvchisi",
   bio: "Men robototexnika yo'nalishida tahsil olayotgan va ushbu sohada 1 yillik amaliy tajribaga ega talabaman. Mikroprotsessorlar, sensorlar va mexanik tizimlarni birlashtirib, real hayotiy muammolarga aqlli yechimlar topish bilan shug'ullanaman. Bir yillik faoliyatim davomida murakkab mikrosxemalar loyihalash, elektron datchiklar bilan ishlash va avtomatlashtirilgan mexanizmlarni yaratish bo'yicha kuchli amaliy va nazariy ko'nikmalarga ega bo'ldim.",
   yearsOfExperience: 1,
